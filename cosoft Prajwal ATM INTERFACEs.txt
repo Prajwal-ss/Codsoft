@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+class BankAcc {
+	float bal;
+	BankAcc(float p3) {
+		bal = p3;
+	}
+	void deposit(int da) {
+		bal = bal + da;
+		System.out.println("The amout has been deposited sucessfully\n");
+		System.out.println("Your current balance amount is: " + bal);
+	}
+	void withdraw(int wa) {
+		if(wa > bal) {
+			System.out.println("\nInsufficient Balance\n");
+			return;
+		}
+		bal = bal - wa;
+		System.out.println("\nThe amout has been withdrawn sucessfully");
+		System.out.println("Your current balance amount is: " + bal);
+	}
+	void checkBalance() {
+		System.out.println("\nThe balance amount is : " + bal);
+	}
+}
+public class ATM{
+
+	public static void main(String[] args) {
+		BankAcc ba = new BankAcc(1700.00f);
+		Scanner sc = new Scanner(System.in);
+		for(;;) {
+			System.out.println("\n********ATM MENU*******");
+			System.out.println("1-Deposit\n2-Withdrawal\n3-Balance Check\n4-Exit\n");
+			System.out.print("Enter your option: ");
+			int ch = sc.nextInt();
+			switch(ch) {
+				case 1: System.out.print("Enter the amount to be depoisted: ");
+						int da = sc.nextInt();
+						ba.deposit(da);
+						break;
+				case 2: System.out.print("Enter the amount to be withdrawn: ");
+						int wa = sc.nextInt();
+						ba.withdraw(wa);
+						break;
+				case 3: ba.checkBalance();
+						break;
+				case 4: System.exit(0);
+			}
+		}
+	}
+}
